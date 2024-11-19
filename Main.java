@@ -115,12 +115,76 @@ class Specialist extends HealthProfessional {
     }
 }
 
+class Appointment {
+    private String patientName;
+    private String mobilePhone;
+    private String preferredTimeSlot;
+    private HealthProfessional selectedDoctor;
+
+    // 默认构造函数
+    public Appointment() {
+    }
+
+    // 这个构造函数可以初始化预约的所有信息，包括患者姓名、手机号码、预约时间槽和所选医生
+    public Appointment(String patientName, String mobilePhone, String preferredTimeSlot, HealthProfessional selectedDoctor) {
+        this.patientName = patientName;
+        this.mobilePhone = mobilePhone;
+        this.preferredTimeSlot = preferredTimeSlot;
+        this.selectedDoctor = selectedDoctor;
+    }
+
+    // 这个方法会打印出预约的所有信息，包括患者姓名、手机号码、预约时间槽和所选医生的详细信息
+    public void printAllVariables() {
+        System.out.println("Patient's name: " + patientName);
+        System.out.println("Mobile phone: " + mobilePhone);
+        System.out.println("Preferred time slot: " + preferredTimeSlot);
+        System.out.println("Selected doctor: ");
+        selectedDoctor.printAllVariables();
+    }
+
+    // 下面是Getter和Setter方法，用来获取和设置预约相关的属性
+    public String getPatientName() {
+        return patientName;
+    }
+
+    public void setPatientName(String patientName) {
+        this.patientName = patientName;
+    }
+
+    public String getMobilePhone() {
+        return mobilePhone;
+    }
+
+    public void setMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
+    }
+
+    public String getPreferredTimeSlot() {
+        return preferredTimeSlot;
+    }
+
+    public void setPreferredTimeSlot(String preferredTimeSlot) {
+        this.preferredTimeSlot = preferredTimeSlot;
+    }
+
+    public HealthProfessional getSelectedDoctor() {
+        return selectedDoctor;
+    }
+
+    public void setSelectedDoctor(HealthProfessional selectedDoctor) {
+        this.selectedDoctor = selectedDoctor;
+    }
+}
+
 public class Main {
     public static void main(String[] args) {
         GeneralPractitioner gp = new GeneralPractitioner(1, "Doctor Smith", "General Practice", true);
-        gp.printAllVariables();
-
         Specialist sp = new Specialist(4, "Doctor Johnson", "Surgery", "Cardiology");
-        sp.printAllVariables();
+
+        Appointment app = new Appointment("John Doe", "1234567890", "09:00", gp);
+        app.printAllVariables();
+
+        Appointment app2 = new Appointment("Jane Smith", "9876543210", "10:30", sp);
+        app2.printAllVariables();
     }
-}
+}   
